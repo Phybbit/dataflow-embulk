@@ -1,0 +1,18 @@
+in:
+  type: s3
+  bucket: <%= @s3_bucket %>
+  path_prefix: <%= @s3_path_prefix %>
+  endpoint: <%= @s3_endpoint %>
+  access_key_id: <%= @aws_access_key %>
+  secret_access_key: <%= @aws_secret_key %>
+  parser:
+    charset: UTF-8
+out:
+  type: postgresql
+  host: <%= ENV['MOJACO_POSTGRESQL_ADDRESS'] || '127.0.0.1' %>
+  user: <%= ENV['MOJACO_POSTGRESQL_USER'] %>
+  password: <%= ENV['MOJACO_POSTGRESQL_PASSWORD'] %>
+  database: <%= @db_name %>
+  table: <%= @dataset_name %>
+  options: {loglevel: 2}
+  mode: insert_direct
